@@ -1,0 +1,274 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-playfair);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* ─── Cosmic palette ─────────────────────────────── */
+  --color-midnight: #080b24;
+  --color-deep-purple: #30105e;
+  --color-cosmic-violet: #7544d8;
+  --color-nebula-pink: #f47acb;
+  --color-electric-blue: #4b9cff;
+  --color-glow-cyan: #73e7f5;
+  --color-soft-gold: #ffd98a;
+
+  /* ─── Animations ─────────────────────────────────── */
+  --animate-twinkle: twinkle 3.2s ease-in-out infinite;
+  --animate-float-slow: float-slow 7s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+  --animate-drift: drift 26s linear infinite;
+  --animate-spin-slower: spin 46s linear infinite;
+}
+
+/* The site is an exclusively dark, cinematic experience. */
+:root {
+  --radius: 1rem;
+  --background: #080b24;
+  --foreground: #edebff;
+  --card: #150f33;
+  --card-foreground: #edebff;
+  --popover: #171040;
+  --popover-foreground: #edebff;
+  --primary: #7544d8;
+  --primary-foreground: #ffffff;
+  --secondary: #241650;
+  --secondary-foreground: #edebff;
+  --muted: #1c1440;
+  --muted-foreground: #a79fd6;
+  --accent: #2a1a5e;
+  --accent-foreground: #edebff;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(180, 160, 255, 0.16);
+  --input: rgba(180, 160, 255, 0.22);
+  --ring: #7544d8;
+  --chart-1: #7544d8;
+  --chart-2: #4b9cff;
+  --chart-3: #73e7f5;
+  --chart-4: #f47acb;
+  --chart-5: #ffd98a;
+  --sidebar: #150f33;
+  --sidebar-foreground: #edebff;
+  --sidebar-primary: #7544d8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2a1a5e;
+  --sidebar-accent-foreground: #edebff;
+  --sidebar-border: rgba(180, 160, 255, 0.16);
+  --sidebar-ring: #7544d8;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: rgba(244, 122, 203, 0.35);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  /* Elegant display typography */
+  .font-display {
+    font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  }
+
+  /* Translucent cosmic panel — used only where readability needs help */
+  .glass-panel {
+    background:
+      radial-gradient(120% 140% at 20% 0%, rgba(117, 68, 216, 0.16) 0%, transparent 55%),
+      radial-gradient(120% 140% at 85% 100%, rgba(244, 122, 203, 0.1) 0%, transparent 55%),
+      rgba(10, 9, 34, 0.82);
+    backdrop-filter: blur(20px) saturate(1.25);
+    -webkit-backdrop-filter: blur(20px) saturate(1.25);
+    border: 1px solid rgba(180, 160, 255, 0.18);
+    box-shadow:
+      0 24px 80px rgba(3, 2, 18, 0.65),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-bar {
+    background: rgba(9, 8, 30, 0.72);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid rgba(180, 160, 255, 0.16);
+  }
+
+  /* Controlled text glow (kept subtle per art direction) */
+  .text-glow-gold {
+    text-shadow: 0 0 18px rgba(255, 217, 138, 0.45), 0 0 44px rgba(255, 217, 138, 0.18);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 16px rgba(115, 231, 245, 0.4), 0 0 40px rgba(115, 231, 245, 0.15);
+  }
+  .text-glow-pink {
+    text-shadow: 0 0 16px rgba(244, 122, 203, 0.42), 0 0 40px rgba(244, 122, 203, 0.16);
+  }
+  .text-glow-violet {
+    text-shadow: 0 0 16px rgba(117, 68, 216, 0.5), 0 0 42px rgba(117, 68, 216, 0.2);
+  }
+
+  /* Clearly-identifiable placeholder content (values still to be personalised) */
+  .content-placeholder {
+    color: var(--color-soft-gold);
+    background: rgba(255, 217, 138, 0.08);
+    border-bottom: 1px dashed rgba(255, 217, 138, 0.55);
+    padding: 0 0.25em;
+    border-radius: 2px;
+  }
+
+  /* Same idea on light paper (the love letter) — dark ink instead of gold */
+  .content-placeholder-paper {
+    color: #6d4d1f;
+    background: rgba(176, 74, 122, 0.07);
+    border-bottom: 1px dashed rgba(176, 74, 122, 0.6);
+    padding: 0 0.25em;
+    border-radius: 2px;
+  }
+
+  /* Custom cosmic scrollbar */
+  .cosmic-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(117, 68, 216, 0.55) transparent;
+  }
+  .cosmic-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .cosmic-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .cosmic-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(117, 68, 216, 0.65), rgba(244, 122, 203, 0.55));
+    border-radius: 999px;
+  }
+
+  /* Thin gradient rule used as section divider */
+  .cosmic-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(180, 160, 255, 0.4), transparent);
+  }
+
+  .gradient-text-cosmic {
+    background: linear-gradient(100deg, #ffd98a 0%, #f47acb 38%, #7544d8 68%, #73e7f5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-4%, -3%, 0);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Respect users who prefer less motion: keep function, drop decoration */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

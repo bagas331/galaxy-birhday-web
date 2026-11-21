@@ -1,0 +1,9 @@
+node_modules
+.next/
+.vercel
+dev.log
+server.log
+.env*
+!.env.example
+LANY - Soft.mp3
+
