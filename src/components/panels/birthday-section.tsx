@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Cake } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { ContentValue, EditHint } from "@/components/shared/content-value";
 
 /**
@@ -11,7 +11,7 @@ import { ContentValue, EditHint } from "@/components/shared/content-value";
  */
 export function BirthdaySection() {
   const { birthdayTitle, birthdayDate, birthdayMessage, recipientName, senderName } =
-    birthdayContent;
+    useBirthdayContent();
 
   return (
     <div className="relative">

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { GlowButton, GhostButton } from "@/components/shared/buttons";
 import { ContentValue } from "@/components/shared/content-value";
 
@@ -18,7 +18,7 @@ interface IntroScreenProps {
  */
 export function IntroScreen({ onEnter, onSkip }: IntroScreenProps) {
   const { heroTitle, heroSubtitle, enterButtonLabel, skipIntroLabel, recipientName } =
-    birthdayContent;
+    useBirthdayContent();
 
   return (
     <motion.div

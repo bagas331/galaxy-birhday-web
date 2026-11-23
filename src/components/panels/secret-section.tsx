@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Star } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { useUniverseStore } from "@/lib/universe-store";
 import { ContentValue, EditHint } from "@/components/shared/content-value";
 
@@ -14,7 +14,7 @@ import { ContentValue, EditHint } from "@/components/shared/content-value";
  * never blocks navigation.
  */
 export function SecretSection() {
-  const { secretLeadIn, secretMessage } = birthdayContent;
+  const { secretLeadIn, secretMessage } = useBirthdayContent();
   const triggerMeteorBurst = useUniverseStore((s) => s.triggerMeteorBurst);
 
   useEffect(() => {

@@ -83,3 +83,24 @@ export interface BirthdayContent {
   closingMessage: string[];
   replayLabel: string;
 }
+
+/** SaaS metadata stored alongside a customer's customized BirthdayContent. */
+export interface CustomUniverseRecord {
+  slug: string;
+  content: BirthdayContent;
+  /** Optional passcode required by visitors before entering the universe. */
+  accessPin?: string;
+  /** Optional hint shown on the passcode lock screen. */
+  accessPinHint?: string;
+  /** Package tier for Micro-SaaS monetization. */
+  planTier: "free" | "premium" | "forever";
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ApiResponse<T = unknown> {
+  success: boolean;
+  message: string;
+  data?: T;
+  errors?: string[];
+}

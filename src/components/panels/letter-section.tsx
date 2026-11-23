@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Heart, MailOpen } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { ContentValue, EditHint } from "@/components/shared/content-value";
 
 /**
@@ -13,7 +13,7 @@ import { ContentValue, EditHint } from "@/components/shared/content-value";
  */
 export function LetterSection() {
   const { letterTitle, letterGreeting, letterParagraphs, letterSignOff, senderName } =
-    birthdayContent;
+    useBirthdayContent();
   const [stage, setStage] = useState<"sealed" | "opening" | "reading">("sealed");
 
   const open = () => {

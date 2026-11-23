@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Orbit } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { ContentValue, EditHint } from "@/components/shared/content-value";
 
 /**
@@ -12,7 +12,7 @@ import { ContentValue, EditHint } from "@/components/shared/content-value";
  * come only from real data — never invented.
  */
 export function TimelineSection() {
-  const { memories } = birthdayContent;
+  const { memories } = useBirthdayContent();
 
   return (
     <div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { birthdayContent, isPlaceholder } from "@/data/birthday-content";
+import { isPlaceholder } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { cn } from "@/lib/utils";
 
 /**
@@ -52,5 +53,6 @@ export function EditHint({ values }: { values: (string | undefined)[] }) {
 }
 
 export function RecipientName({ className }: { className?: string }) {
-  return <ContentValue value={birthdayContent.recipientName} className={className} />;
+  const { recipientName } = useBirthdayContent();
+  return <ContentValue value={recipientName} className={className} />;
 }

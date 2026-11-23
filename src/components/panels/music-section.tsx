@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Music, Pause, Play, Volume2, VolumeX } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { audioManager, useAudio } from "@/lib/audio-manager";
 import { ContentValue, EditHint } from "@/components/shared/content-value";
 import { cn } from "@/lib/utils";
@@ -37,7 +37,7 @@ function Equalizer({ playing }: { playing: boolean }) {
  * moving between sections. Errors degrade gracefully with a notice.
  */
 export function MusicSection() {
-  const { songTitle, songArtist, songSrc } = birthdayContent;
+  const { songTitle, songArtist, songSrc } = useBirthdayContent();
   const audio = useAudio();
 
   const disabled = Boolean(audio.error);

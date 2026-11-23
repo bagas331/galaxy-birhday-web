@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { ContentValue, EditHint } from "@/components/shared/content-value";
 
 /**
@@ -11,7 +11,7 @@ import { ContentValue, EditHint } from "@/components/shared/content-value";
  * and a keyboard-navigable lightbox (arrows + Escape).
  */
 export function GallerySection() {
-  const { gallery } = birthdayContent;
+  const { gallery } = useBirthdayContent();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);

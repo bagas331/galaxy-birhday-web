@@ -11,7 +11,7 @@ import {
   Telescope,
 } from "lucide-react";
 import { useUniverseStore } from "@/lib/universe-store";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { cn } from "@/lib/utils";
 import type { SectionId } from "@/types/universe";
 
@@ -124,6 +124,7 @@ export function UniverseNav() {
 
 /** Small hint shown right after entering the universe; fades away. */
 export function ExploreHint({ visible, onDismiss }: { visible: boolean; onDismiss: () => void }) {
+  const { exploreHint } = useBirthdayContent();
   if (!visible) return null;
   return (
     <button
@@ -132,7 +133,7 @@ export function ExploreHint({ visible, onDismiss }: { visible: boolean; onDismis
       className="glass-bar fixed bottom-[8.5rem] left-1/2 z-20 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-full px-5 py-2.5 text-[11px] font-medium tracking-[0.14em] text-white/70 sm:bottom-24 sm:text-xs"
       aria-label="Exploration hint — tap to dismiss"
     >
-      {birthdayContent.exploreHint}
+      {exploreHint}
     </button>
   );
 }

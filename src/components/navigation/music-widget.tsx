@@ -1,7 +1,7 @@
 "use client";
 
 import { Music, Pause, Play, Volume2, VolumeX } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { audioManager, useAudio } from "@/lib/audio-manager";
 import { useUniverseStore } from "@/lib/universe-store";
 import { cn } from "@/lib/utils";
@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  * song keeps playing across every section.
  */
 export function MusicWidget() {
-  const { songSrc, songTitle } = birthdayContent;
+  const { songSrc, songTitle } = useBirthdayContent();
   const audio = useAudio();
   const openSection = useUniverseStore((s) => s.openSection);
 

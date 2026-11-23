@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Heart, Sparkles } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { useUniverseStore } from "@/lib/universe-store";
 import { GlowButton } from "@/components/shared/buttons";
 import { ContentValue } from "@/components/shared/content-value";
@@ -20,7 +20,8 @@ import { ClosingSection } from "@/components/panels/closing-section";
  * when WebGL is missing and manually via the 2D-mode switch.
  */
 export function TwoDFallback() {
-  const { heroTitle, heroSubtitle, enterButtonLabel } = birthdayContent;
+  const content = useBirthdayContent();
+  const { heroTitle, heroSubtitle, enterButtonLabel } = content;
   const restartExperience = useUniverseStore((s) => s.restartExperience);
 
   const scrollTo = (id: string) => {
@@ -53,7 +54,7 @@ export function TwoDFallback() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
           <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.4em] text-glow-cyan/80">
             A birthday universe for{" "}
-            <ContentValue value={birthdayContent.recipientName} className="font-display normal-case italic tracking-normal text-soft-gold" />
+            <ContentValue value={content.recipientName} className="font-display normal-case italic tracking-normal text-soft-gold" />
           </p>
           <h1 className="font-display max-w-3xl text-4xl leading-tight text-white sm:text-6xl">
             {heroTitle}
@@ -111,7 +112,7 @@ export function TwoDFallback() {
 
         <section id="letter" aria-label="Love letter" className="glass-panel scroll-mt-24 rounded-3xl p-6 sm:p-9">
           <h2 className="font-display mb-6 text-2xl text-white sm:text-3xl">
-            {birthdayContent.letterTitle}
+            {content.letterTitle}
           </h2>
           <LetterSection />
         </section>

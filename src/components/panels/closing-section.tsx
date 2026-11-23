@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { RotateCcw, Telescope } from "lucide-react";
-import { birthdayContent } from "@/data/birthday-content";
+import { useBirthdayContent } from "@/lib/content-context";
 import { GlowButton } from "@/components/shared/buttons";
 import { ContentValue, EditHint } from "@/components/shared/content-value";
 
@@ -12,7 +12,7 @@ import { ContentValue, EditHint } from "@/components/shared/content-value";
  * closing message fades in, with an invitation to explore again.
  */
 export function ClosingSection({ onReplay }: { onReplay: () => void }) {
-  const { closingTitle, closingMessage, replayLabel, senderName } = birthdayContent;
+  const { closingTitle, closingMessage, replayLabel, senderName } = useBirthdayContent();
 
   return (
     <div className="mx-auto max-w-2xl">

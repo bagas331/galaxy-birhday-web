@@ -1,19 +1,31 @@
 "use client";
 
-import { MonitorSmartphone, Settings2 } from "lucide-react";
+import Link from "next/link";
+import { MonitorSmartphone, Settings2, Wand2 } from "lucide-react";
 import { useUniverseStore } from "@/lib/universe-store";
 
 /**
  * Display settings: lets visitors drop to the lightweight 2D mode on
- * slow devices or when 3D feels uncomfortable. Also shown
- * automatically when WebGL is unavailable.
+ * slow devices or when 3D feels uncomfortable. Also includes a discrete
+ * entry point to the Self-Service Web Builder (/builder).
  */
-export function SettingsMenu() {
+export function SettingsMenu({ hideBuilderLink = false }: { hideBuilderLink?: boolean }) {
   const force2D = useUniverseStore((s) => s.force2D);
   const setForce2D = useUniverseStore((s) => s.setForce2D);
 
   return (
-    <div className="glass-bar fixed right-3 top-3 z-30 flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3 sm:right-5 sm:top-5">
+    <div className="glass-bar fixed right-3 top-3 z-30 flex items-center gap-1 rounded-full py-1.5 pl-1.5 pr-2.5 sm:right-5 sm:top-5">
+      {!hideBuilderLink && (
+        <Link
+          href="/builder"
+          title="Buat website ulang tahun seperti ini"
+          aria-label="Buat website ulang tahun seperti ini"
+          className="flex items-center gap-1.5 rounded-full bg-soft-gold/15 px-2.5 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-soft-gold transition hover:bg-soft-gold/25 focus-visible:outline-2 focus-visible:outline-soft-gold"
+        >
+          <Wand2 className="h-3.5 w-3.5" aria-hidden />
+          <span className="hidden sm:inline">Buat Universe</span>
+        </Link>
+      )}
       <button
         type="button"
         onClick={() => setForce2D(!force2D)}
